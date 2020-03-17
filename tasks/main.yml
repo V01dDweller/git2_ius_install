@@ -44,4 +44,9 @@
   yum:
     name: 'git2u-all'
     state: installed
+
+- name: Installing git-lfs
+  yum:
+    name: 'git-lfs'
+    state: installed...
 ...
