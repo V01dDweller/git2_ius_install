@@ -1,0 +1,47 @@
+# file: git2_ius_install/tasks/main.yml
+---
+- name: Gathering facts
+  setup:
+
+- name: Assert that this is EL 7 Linux
+  assert:
+    that:
+      - ansible_distribution == "CentOS" or ansible_distribution == "RedHat"
+      - ansible_distribution_major_version == "7"
+    success_msg: '{{ ansible_distribution }} {{ ansible_distribution_version }} detected, installing git2'
+    fail_msg: 'This role only supports CentOS 7 or RHEL 7 for now'
+
+- name: Checking current git version
+  shell: "set -o pipefail; git --version | cut -d' ' -f 3"
+  args:
+    executable: /bin/bash
+  changed_when: false
+  register: gitcheck
+  ignore_errors: yes
+
+- name: Displaying current git version
+  debug:
+    msg: |
+      {%- if gitcheck.failed -%}
+      Git is not installed
+      {%- else -%}
+      Found git version {{ gitcheck.stdout }}
+      {%- endif -%}
+
+- name: Uninstalling old git
+  yum:
+    name: 'git-{{ gitcheck.stdout }}'
+    state: absent
+    autoremove: yes
+  when: gitcheck.stdout is search("1.8")
+
+- name: Adding the IUS CentOS 7 repo
+  yum:
+    name: https://centos7.iuscommunity.org/ius-release.rpm
+    state: installed
+
+- name: Installing git2
+  yum:
+    name: 'git2u-all'
+    state: installed
+...
