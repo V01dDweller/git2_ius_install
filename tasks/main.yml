@@ -42,7 +42,7 @@
 
 - name: Installing git2
   yum:
-    name: 'git2u-all'
+    name: 'git222-all'
     state: installed
 
 - name: Installing git-lfs
