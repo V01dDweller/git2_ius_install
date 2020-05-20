@@ -37,7 +37,7 @@
 
 - name: Adding the IUS CentOS 7 repo
   yum:
-    name: https://centos7.iuscommunity.org/ius-release.rpm
+    name: https://repo.ius.io/ius-release-el7.rpm
     state: installed
 
 - name: Installing git2
