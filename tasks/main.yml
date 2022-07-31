@@ -6,10 +6,12 @@
 - name: Assert that this is EL 7 Linux
   assert:
     that:
-      - ansible_distribution == "CentOS" or ansible_distribution == "RedHat"
-      - ansible_distribution_major_version == "7"
-    success_msg: '{{ ansible_distribution }} {{ ansible_distribution_version }} detected, installing git2'
-    fail_msg: 'This role only supports CentOS 7 or RHEL 7 for now'
+      - ansible_distribution == 'CentOS' or
+        ansible_distribution == 'RedHat'
+      - ansible_distribution_major_version == '7'
+    success_msg: '{{ ansible_distribution }} \
+      {{ ansible_distribution_version }} detected, installing git2'
+    fail_msg: This role only supports CentOS 7 or RHEL 7 for now
 
 - name: Checking current git version
   shell: "set -o pipefail; git --version | cut -d' ' -f 3"
