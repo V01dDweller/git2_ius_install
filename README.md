@@ -51,5 +51,5 @@ BSD
 
 ## Author Information
 
-Written by V01dDweller in 2020.
+by V01dDweller
 
