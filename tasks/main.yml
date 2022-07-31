@@ -12,5 +12,9 @@
   when: detected_os is search('CentOS 7') or
         detected_os is search('RedHat 7')
 
+- name: Install git2 for Ubuntu
+  apt:
+    name: git
     state: installed
+  when: detected_os is search('Ubuntu')
 ...
