@@ -36,8 +36,8 @@
   yum:
     name: git-{{ gitcheck.stdout }}
     state: absent
-  when: gitcheck.stdout is search("1.8")
     autoremove: true
+  when: gitcheck.stdout is search('1.8')
 
 - name: Adding the IUS CentOS 7 repo
   yum:
