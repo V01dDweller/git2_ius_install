@@ -15,6 +15,6 @@
 - name: Install git2 for Ubuntu
   apt:
     name: git
-    state: installed
+    state: present
   when: detected_os is search('Ubuntu')
 ...
