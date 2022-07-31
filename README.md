@@ -1,18 +1,16 @@
-git2\_ius\_install
-==================
 Ansible role that installs git version 2.x with git-lfs on EL 7 Linux via the IUS yum repo. Note that it will automatically remove git 1.8.
+# git2_ius_install
 
-Requirements
-------------
+## Requirements
 * Internet connection
 
-Dependencies
-------------
+## Dependencies
+
 
 None.
 
-Example Usage
--------------
+## Example Usage
+
 
 **1. Install the role**
 ```cmd
@@ -47,13 +45,11 @@ $git --version
 git version 2.16.6
 ```
 
-License
--------
+## License
 
 BSD
 
-Author Information
-------------------
+## Author Information
 
 Written by V01dDweller in 2020.
 
