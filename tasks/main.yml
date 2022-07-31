@@ -14,7 +14,9 @@
     fail_msg: This role only supports CentOS 7 or RHEL 7 for now
 
 - name: Checking current git version
-  shell: "set -o pipefail; git --version | cut -d' ' -f 3"
+  shell: |
+    set -o pipefail
+    git --version | cut -d ' ' -f 3
   args:
     executable: /bin/bash
   changed_when: false
