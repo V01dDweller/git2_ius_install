@@ -7,44 +7,10 @@
   set_fact:
     detected_os: '{{ ansible_distribution }} {{ ansible_distribution_version }}'
 
-- name: Checking current git version
-  shell: |
-    set -o pipefail
-    git --version | cut -d ' ' -f 3
-  args:
-    executable: /bin/bash
-  changed_when: false
-  register: gitcheck
-  ignore_errors: true
+- name: Install git2 for EL 7 Linux
+  include_tasks: el7.yml
+  when: detected_os is search('CentOS 7') or
+        detected_os is search('RedHat 7')
 
-- name: Displaying current git version
-  debug:
-    msg: |
-      {%- if gitcheck.failed -%}
-      Git is not installed
-      {%- else -%}
-      Found git version {{ gitcheck.stdout }}
-      {%- endif -%}
-
-- name: Uninstalling old git
-  yum:
-    name: git-{{ gitcheck.stdout }}
-    state: absent
-    autoremove: true
-  when: gitcheck.stdout is search('1.8')
-
-- name: Adding the IUS CentOS 7 repo
-  yum:
-    name: https://repo.ius.io/ius-release-el7.rpm
-    state: installed
-
-- name: Installing git2
-  yum:
-    name: git236-all
-    state: installed
-
-- name: Installing git-lfs
-  yum:
-    name: git-lfs
     state: installed
 ...
