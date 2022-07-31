@@ -34,7 +34,7 @@
 
 - name: Uninstalling old git
   yum:
-    name: 'git-{{ gitcheck.stdout }}'
+    name: git-{{ gitcheck.stdout }}
     state: absent
   when: gitcheck.stdout is search("1.8")
     autoremove: true
@@ -46,11 +46,11 @@
 
 - name: Installing git2
   yum:
-    name: 'git222-all'
+    name: git236-all
     state: installed
 
 - name: Installing git-lfs
   yum:
-    name: 'git-lfs'
+    name: git-lfs
     state: installed
 ...
