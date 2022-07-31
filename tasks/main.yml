@@ -21,7 +21,7 @@
     executable: /bin/bash
   changed_when: false
   register: gitcheck
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: Displaying current git version
   debug:
@@ -36,8 +36,8 @@
   yum:
     name: 'git-{{ gitcheck.stdout }}'
     state: absent
-    autoremove: yes
   when: gitcheck.stdout is search("1.8")
+    autoremove: true
 
 - name: Adding the IUS CentOS 7 repo
   yum:
