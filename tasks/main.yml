@@ -3,6 +3,9 @@
 - name: Gathering facts
   setup:
 
+- name: Setting detected_os
+  set_fact:
+    detected_os: '{{ ansible_distribution }} {{ ansible_distribution_version }}'
 
 - name: Checking current git version
   shell: |
