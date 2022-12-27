@@ -49,7 +49,7 @@ ansible-playbook git2_install.yml
 
 **4. Validate**
 ```
-$git --version
+$ git --version
 git version 2.16.6
 ```
 
