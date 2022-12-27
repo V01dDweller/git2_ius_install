@@ -61,3 +61,4 @@ BSD
 
 by V01dDweller
 
+[modeline]: # ( vi: set textwidth=78 colorcolumn=80: )
