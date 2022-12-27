@@ -1,19 +1,19 @@
 # file: tasks/main.yml
 ---
 - name: Gathering facts
-  setup:
+  ansible.builtin.setup:
 
 - name: Setting detected_os
-  set_fact:
+  ansible.builtin.set_fact:
     detected_os: '{{ ansible_distribution }} {{ ansible_distribution_version }}'
 
 - name: Install git2 for EL 7 Linux
-  include_tasks: el7.yml
+  ansible.builtin.include_tasks: el7.yml
   when: detected_os is search('CentOS 7') or
         detected_os is search('RedHat 7')
 
-- name: Install git2 for Ubuntu
-  apt:
+- name: Installing git2 for Ubuntu
+  ansible.builtin.apt:
     name: git
     state: present
   when: detected_os is search('Ubuntu')

@@ -1,7 +1,7 @@
 # file: tasks/el7.yml
 ---
 - name: Checking current git version
-  shell: |
+  ansible.builtin.shell: |
     set -o pipefail
     git --version | cut -d ' ' -f 3
   args:
@@ -11,7 +11,7 @@
   ignore_errors: true
 
 - name: Displaying current git version
-  debug:
+  ansible.builtin.debug:
     msg: |
       {%- if gitcheck.failed -%}
       Git is not installed
@@ -20,24 +20,24 @@
       {%- endif -%}
 
 - name: Uninstalling old git
-  yum:
+  ansible.builtin.yum:
     name: git-{{ gitcheck.stdout }}
     state: absent
     autoremove: true
   when: gitcheck.stdout is search('1.8')
 
 - name: Adding the IUS CentOS 7 repo
-  yum:
+  ansible.builtin.yum:
     name: https://repo.ius.io/ius-release-el7.rpm
     state: installed
 
 - name: Installing git2
-  yum:
+  ansible.builtin.yum:
     name: git236-all
     state: installed
 
 - name: Installing git-lfs
-  yum:
+  ansible.builtin.yum:
     name: git-lfs
     state: installed
 ...
