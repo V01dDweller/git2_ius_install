@@ -2,6 +2,7 @@
 ---
 - name: Gathering facts
   ansible.builtin.setup:
+    gather_subset: min
 
 - name: Setting detected_os
   ansible.builtin.set_fact:
