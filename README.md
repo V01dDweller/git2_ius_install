@@ -14,13 +14,13 @@ None.
 
 ## Example Usage
 
-#### 1. Install the role
+### 1. Install the role
 
 ```cmd
 ansible-galaxy install V01dDweller.git2_ius_install
 ```
 
-#### 2. Create a short playbook
+### 2. Create a short playbook
 
 ```cmd
 touch git2_install.yml
@@ -39,13 +39,13 @@ touch git2_install.yml
       tags: git
 ```
 
-#### 3. Run the playbook
+### 3. Run the playbook
 
 ```cmd
 ansible-playbook git2_install.yml
 ```
 
-#### 4. Validate
+### 4. Validate
 
 ```
 $ git --version
